@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  localstack:
+    image: localstack/localstack
+    container_name: localstack
+    ports:
+      - 4566:4566
+    environment:
+      - SERVICES=sqs
+      - GATEWAY_LISTEN=0.0.0.0:4566
+      - AWS_DEFAULT_REGION=sa-east-1
+      - AWS_ACCESS_KEY_ID=fakeAccessKeyId
+      - AWS_SECRET_ACCESS_KEY=fakeSecretAccessKey
+    volumes:
+      - "./localstack/init:/etc/localstack/init/ready.d"
