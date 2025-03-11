@@ -20,6 +20,7 @@ import java.time.Duration;
 public class SqsConfiguration {
 
   @Bean
+  @Primary
   SqsAsyncClient sqsAsyncClient() {
     return SqsAsyncClient.builder()
             .endpointOverride(URI.create("http://localhost:4566"))
