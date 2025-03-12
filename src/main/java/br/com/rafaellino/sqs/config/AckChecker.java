@@ -11,13 +11,13 @@ public class AckChecker implements AcknowledgementResultCallback<Object> {
 
   @Override
   public void onSuccess(Collection<Message<Object>> messages) {
-    log.info("success on messages {}", messages);
+    log.info("success on ack messages {}", messages);
     AcknowledgementResultCallback.super.onSuccess(messages);
   }
 
   @Override
   public void onFailure(Collection<Message<Object>> messages, Throwable throwable) {
-    log.error("failure on ack on messages {}", messages, throwable);
+    log.error("failure on ack messages {}", messages, throwable);
     AcknowledgementResultCallback.super.onFailure(messages, throwable);
   }
 }

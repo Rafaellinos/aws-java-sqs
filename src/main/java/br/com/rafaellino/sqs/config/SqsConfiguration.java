@@ -5,6 +5,7 @@ import io.awspring.cloud.sqs.listener.FifoBatchGroupingStrategy;
 import io.awspring.cloud.sqs.listener.ListenerMode;
 import io.awspring.cloud.sqs.listener.acknowledgement.AcknowledgementOrdering;
 import io.awspring.cloud.sqs.listener.acknowledgement.handler.AcknowledgementMode;
+import io.awspring.cloud.sqs.operations.SqsTemplate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -52,6 +53,14 @@ public class SqsConfiguration {
             })
             .sqsAsyncClient(sqsAsyncClient())
             .acknowledgementResultCallback(new AckChecker())
+            .build();
+  }
+
+  @Bean
+  @Primary
+  SqsTemplate sqsTemplate() {
+    return SqsTemplate.builder()
+            .sqsAsyncClient(sqsAsyncClient())
             .build();
   }
 }
